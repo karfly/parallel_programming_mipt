@@ -36,7 +36,7 @@ int main(int argc, char * argv[])
         int world_size = 0;
         MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-        int N = atoi(argv[1]);
+        int N = atoi(argv[1]); // Supposing that given argument is valid integer number
         if (N <= 0)
                 {
                 printf("Wrong N. N must be positive.\n");
@@ -52,7 +52,7 @@ int main(int argc, char * argv[])
                 {
                 factorial_tmp = factorial(i);
                 if (factorial_tmp != 0)
-                        my_sum += (1 / factorial_tmp);
+                        my_sum += 1 / factorial_tmp;
                 }
 
         //printf("%d my_sum = %Lf\n", world_rank, my_sum);
@@ -90,3 +90,4 @@ int main(int argc, char * argv[])
         
         return ret_val; 
 }
+
