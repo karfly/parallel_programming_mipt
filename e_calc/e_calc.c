@@ -21,12 +21,13 @@ int factorial(int n)
 
 int main(int argc, char * argv[])
 {
-        MPI_Init(&argc, &argv);         
         if (argc != 2)
                 {
                 printf("Wrong number of arguments. Usage: $mpirun -np [NP] ./e_calc [N] - where N is number of members in series\n");
                 return 1;
                 }
+
+        MPI_Init(&argc, &argv);         
         
         int ret_val = 1;
 
