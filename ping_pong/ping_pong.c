@@ -20,31 +20,30 @@ int main()
                 goto exit_error;
                 }
 
-        int ball = 0;
-
         if (world_rank == 0)
                 {
-                ball = 42;
+                ball_0 = 42;
                 while (1)
                         {
-                        MPI_Send(&ball, 1, MPI_INT, world_rank + 1, 0, MPI_COMM_WORLD);  
+                        MPI_Send(&ball_0, 1, MPI_INT, world_rank + 1, 0, MPI_COMM_WORLD);  
 
-                        MPI_Recv(&ball, 1, MPI_INT, world_rank + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-                        printf("Process %d received ball (%d) from process %d\n", world_rank, ball, world_rank + 1);
+                        MPI_Recv(&ball_0, 1, MPI_INT, world_rank + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                        printf("Process %d refceived ball (%d) from process %d\n", world_rank, ball_0, world_rank + 1);
 
                         sleep(1);
                         }
                 } 
         else if (world_rank == 1)  
                 {
+                ball_1 = 0;
                 while (1)
                         {
-                        MPI_Recv(&ball, 1, MPI_INT, world_rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-                        printf("Process %d received ball (%d) from process %d\n", world_rank, ball, world_rank - 1);
+                        MPI_Recv(&ball_1, 1, MPI_INT, world_rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                        printf("Process %d received ball (%d) from process %d\n", world_rank, ball_1, world_rank - 1);
 
                         sleep(1);
 
-                        MPI_Send(&ball, 1, MPI_INT, world_rank - 1, 0, MPI_COMM_WORLD);  
+                        MPI_Send(&ball_1, 1, MPI_INT, world_rank - 1, 0, MPI_COMM_WORLD);  
                         }
                 }
         else
@@ -61,3 +60,4 @@ int main()
         
         return ret_val; 
 }
+
